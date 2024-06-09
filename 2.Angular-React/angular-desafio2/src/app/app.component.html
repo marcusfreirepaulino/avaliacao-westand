@@ -1,0 +1,24 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label>
+    Nome:
+    <input type="text" formControlName="name">
+  </label>
+
+  <label>
+    Email:
+    <input type="email" formControlName="email">
+  </label>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<div *ngIf="submitted">
+  <p>Nome: {{userData.name}}</p>
+  <p>Email: {{userData.email}}</p>
+</div>
+
+<div *ngIf="userForm.invalid && userForm.touched">
+  <p *ngIf="userForm.get('name')?.errors?.['required']">Por favor, insira seu nome.</p>
+  <p *ngIf="userForm.get('email')?.errors?.['required']">Por favor, insira seu email.</p>
+  <p *ngIf="userForm.get('email')?.errors?.['email']">Por favor, insira um email válido.</p>
+</div>
